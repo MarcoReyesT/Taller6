@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Universidad de La Frontera
+License Type: Academic
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="orm.Contacto" table="contacto" lazy="false">
+		<id name="uid" column="uid" type="integer" unsaved-value="0">
+			<generator class="identity">
+			</generator>
+		</id>
+		<property name="nombre" column="nombre" type="string" length="100" not-null="false" lazy="false">
+			<meta attribute="field-description">
+				Nombre
+			</meta>
+		</property>
+		<property name="apellido" column="apellido" type="string" length="100" not-null="false" lazy="false">
+			<meta attribute="field-description">
+				Apellido
+			</meta>
+		</property>
+		<property name="mail" column="mail" type="string" length="50" not-null="false" lazy="false">
+			<meta attribute="field-description">
+				Mail
+			</meta>
+		</property>
+		<property name="telefono" column="telefono" type="string" length="20" not-null="false" lazy="false">
+			<meta attribute="field-description">
+				Telefono
+			</meta>
+		</property>
+		<many-to-one name="id_ciudad" cascade="lock" column="id_ciudad" class="orm.Ciudad" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<many-to-one name="id_empresa" cascade="lock" column="id_empresa" class="orm.Empresa" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+	</class>
+</hibernate-mapping>

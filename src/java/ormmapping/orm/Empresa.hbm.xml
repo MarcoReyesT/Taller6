@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Universidad de La Frontera
+License Type: Academic
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="orm.Empresa" table="empresa" lazy="false">
+		<id name="uid" column="uid" type="integer" unsaved-value="0">
+			<generator class="identity">
+			</generator>
+		</id>
+		<property name="nombre" column="nombre" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				Nombre empresa
+			</meta>
+		</property>
+		<set name="ORM_Contacto" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="id_empresa" not-null="true"/>
+			<one-to-many class="orm.Contacto"/>
+		</set>
+	</class>
+</hibernate-mapping>
